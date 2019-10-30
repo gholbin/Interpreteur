@@ -13,9 +13,9 @@ procedure principale()
   ecrire("i = ", i)
   ecrire("j = ", j)
   si(i<5)
-    ecrire("i < 5");
+    ecrire("i < 5")
   sinonsi(i < 20)
-    ecrire("i < 20");
+    ecrire("i < 20")
   sinon
     ecrire("i >= 20")
   finsi

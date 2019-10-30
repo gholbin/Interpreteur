@@ -160,10 +160,10 @@ int NoeudInstPour::executer() {
 ////////////////////////////////////////////////////////////////////////////////
 
 NoeudInstEcrire::NoeudInstEcrire() 
-: m_seq() {}
+: NoeudSeqInst() {}
 
 int NoeudInstEcrire::executer() {
-    for(Noeud* p : m_seq){
+    for(Noeud* p : m_instructions){
         if (typeid(*p)==typeid(SymboleValue) &&  *((SymboleValue*)p)== "<CHAINE>" ){
             string chaine = ((SymboleValue*) p)->getChaine();
             cout << chaine.substr(1, chaine.size()-2);
@@ -175,13 +175,10 @@ int NoeudInstEcrire::executer() {
   return 0; // La valeur renvoyée ne représente rien !
 }
 
-void NoeudInstEcrire::ajoute(Noeud* aEcrire) {
-    m_seq.push_back(aEcrire);
-}
 
 void NoeudInstEcrire::traduitEnCPP(ostream & cout ,unsigned int indentation)const{
     cout << setw(4 * indentation) << "cout " ;
-    for(Noeud* p : m_seq){
+    for(Noeud* p : m_instructions){
         if (typeid(*p)==typeid(SymboleValue) &&  *((SymboleValue*)p)== "<CHAINE>" ){
             string chaine = ((SymboleValue*) p)->getChaine();
             // ...
@@ -197,10 +194,10 @@ void NoeudInstEcrire::traduitEnCPP(ostream & cout ,unsigned int indentation)cons
 ////////////////////////////////////////////////////////////////////////////////
 
 NoeudInstLire::NoeudInstLire() 
-: NoeudInstEcrire() {}
+: NoeudSeqInst() {}
 
 int NoeudInstLire::executer() {
-    for(Noeud* p : m_seq){        
+    for(Noeud* p : m_instructions){
         int valeur;
         cin >> valeur;
         ((SymboleValue*) p)->setValeur(valeur); // On affecte la variable
@@ -210,7 +207,7 @@ int NoeudInstLire::executer() {
 
 void NoeudInstLire::traduitEnCPP(ostream & cout ,unsigned int indentation)const{
     cout << setw(4 * indentation) << "cin ";
-    for(Noeud* p : m_seq){
+    for(Noeud* p : m_instructions){
         cout << " << " << ((SymboleValue*) p)->getChaine();
     }
     cout << ";" << endl;

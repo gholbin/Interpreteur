@@ -20,7 +20,7 @@ class Noeud {
     virtual int  executer() =0 ; // Méthode pure (non implémentée) qui rend la classe abstraite
     virtual void ajoute(Noeud* instruction) { throw OperationInterditeException(); }
     virtual ~Noeud() {} // Présence d'un destructeur virtuel conseillée dans les classes abstraites
-    virtual void traduitEnCPP(ostream & cout,unsigned int indentation)const;
+    virtual void traduitEnCPP(ostream & cout,unsigned int indentation)const {};
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -32,8 +32,8 @@ class NoeudSeqInst : public Noeud {
     ~NoeudSeqInst() {}       // A cause du destructeur virtuel de la classe Noeud
     int executer() override; // Exécute chaque instruction de la séquence
     void ajoute(Noeud* instruction) override;  // Ajoute une instruction à la séquence
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
-  private:
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
+  protected:
     vector<Noeud *> m_instructions; // pour stocker les instructions de la séquence
 };
 
@@ -45,7 +45,7 @@ class NoeudAffectation : public Noeud {
      NoeudAffectation(Noeud* variable, Noeud* expression); // construit une affectation
     ~NoeudAffectation() {}   // A cause du destructeur virtuel de la classe Noeud
     int executer() override; // Exécute (évalue) l'expression et affecte sa valeur à la variable
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
   private:
     Noeud* m_variable;
     Noeud* m_expression;
@@ -60,7 +60,7 @@ class NoeudOperateurBinaire : public Noeud {
     // Construit une opération binaire : operandeGauche operateur OperandeDroit
    ~NoeudOperateurBinaire() {} // A cause du destructeur virtuel de la classe Noeud
     int executer() override;   // Exécute (évalue) l'opération binaire)
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
   private:
     Symbole m_operateur;
     Noeud*  m_operandeGauche;
@@ -76,7 +76,7 @@ class NoeudInstSi : public Noeud {
      // Construit une "instruction si" avec sa condition et sa séquence d'instruction
    ~NoeudInstSi() {}         // A cause du destructeur virtuel de la classe Noeud
     int executer() override; // Exécute l'instruction si : si condition vraie on exécute la séquence
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
   private:
     Noeud*  m_condition;
     Noeud*  m_sequence;
@@ -91,7 +91,7 @@ class NoeudInstSiRiche : public Noeud {
     int executer() override; // Exécute l'instruction si : si condition vraie on exécute la séquence
     void ajoute(NoeudInstSi* sinonsi);
     void ajouteSinon(Noeud* sinon);
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
   private:
     vector<NoeudInstSi*>  m_si_sinonsi;
     Noeud*  m_sinon;
@@ -106,7 +106,7 @@ class NoeudInstTantQue : public Noeud{
      // Construit une "instruction tantque" avec sa condition et sa séquence d'instruction
    ~NoeudInstTantQue() {}         // A cause du destructeur virtuel de la classe Noeud
     int executer() override; // Exécute l'instruction tantque : tantque condition vraie on exécute la séquence
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
   private: 
     Noeud*  m_condition;
     Noeud*  m_sequence;
@@ -121,7 +121,7 @@ class NoeudInstRepeter : public NoeudInstTantQue{
      // Construit une "instruction repeter" avec sa condition et sa séquence d'instruction
    ~NoeudInstRepeter() {}         // A cause du destructeur virtuel de la classe Noeud
     int executer() override; // Exécute l'instruction repeter : on exécute la séquence jusqu'a condition vraie 
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
   private: 
     Noeud*  m_condition;
     Noeud*  m_sequence;
@@ -136,7 +136,7 @@ class NoeudInstPour : public NoeudInstTantQue{
      // Construit une "instruction repeter" avec sa condition et sa séquence d'instruction
    ~NoeudInstPour() {}         // A cause du destructeur virtuel de la classe Noeud
     int executer() override; // Exécute l'instruction repeter : on exécute la séquence jusqu'a condition vraie 
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
   private: 
     Noeud*  m_condition;
     Noeud*  m_sequence;
@@ -146,7 +146,7 @@ class NoeudInstPour : public NoeudInstTantQue{
 
 
 ////////////////////////////////////////////////////////////////////////////////
-class NoeudInstEcrire : public Noeud{
+class NoeudInstEcrire : public NoeudSeqInst{
 // Classe pour représenter un noeud "instruction repeter"
 //  et ses 2 fils : la condition du repeter et la séquence d'instruction associée
   public:
@@ -154,15 +154,12 @@ class NoeudInstEcrire : public Noeud{
      // Construit une "instruction repeter" avec sa condition et sa séquence d'instruction
    ~NoeudInstEcrire() {}         // A cause du destructeur virtuel de la classe Noeud
     int executer() override; // Exécute l'instruction repeter : on exécute la séquence jusqu'a condition vraie 
-    void ajoute(Noeud* aEcrire) override;  // Ajoute une instruction à la sequence d'ecriture
     void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
-  protected: 
-    vector<Noeud*> m_seq;
 };
 
 
 ////////////////////////////////////////////////////////////////////////////////
-class NoeudInstLire : public NoeudInstEcrire{
+class NoeudInstLire : public NoeudSeqInst{
 // Classe pour représenter un noeud "instruction lire"
 //  et ses 2 fils : la condition du repeter et la séquence d'instruction associée
   public:
