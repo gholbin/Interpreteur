@@ -16,7 +16,7 @@ public:
 	  int  executer() override;        // exécute le SymboleValue (renvoie sa valeur !)
 	  inline void setValeur(int valeur)    { this->m_valeur=valeur; m_defini=true;  } // accesseur
 	  inline bool estDefini()              { return m_defini;                       } // accesseur
-
+	  inline int getValeur()			   {return m_valeur;						} // accesseur
 	  friend ostream & operator << (ostream & cout, const SymboleValue & symbole); // affiche un symbole value sur cout
 
 private:
