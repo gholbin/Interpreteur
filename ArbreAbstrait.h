@@ -106,7 +106,7 @@ class NoeudInstTantQue : public Noeud{
      // Construit une "instruction tantque" avec sa condition et sa séquence d'instruction
    ~NoeudInstTantQue() {}         // A cause du destructeur virtuel de la classe Noeud
     int executer() override; // Exécute l'instruction tantque : tantque condition vraie on exécute la séquence
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
   private: 
     Noeud*  m_condition;
     Noeud*  m_sequence;
@@ -121,7 +121,7 @@ class NoeudInstRepeter : public NoeudInstTantQue{
      // Construit une "instruction repeter" avec sa condition et sa séquence d'instruction
    ~NoeudInstRepeter() {}         // A cause du destructeur virtuel de la classe Noeud
     int executer() override; // Exécute l'instruction repeter : on exécute la séquence jusqu'a condition vraie 
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
   private: 
     Noeud*  m_condition;
     Noeud*  m_sequence;

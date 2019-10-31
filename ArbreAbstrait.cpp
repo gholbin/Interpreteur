@@ -134,9 +134,19 @@ NoeudInstRepeter::NoeudInstRepeter(Noeud* condition, Noeud* sequence)
 }
 
 int NoeudInstRepeter::executer() {
-  while (!m_condition->executer()) m_sequence->executer();
+  do{
+      m_sequence->executer();
+  } while(!m_condition->executer());
   return 0; // La valeur renvoyée ne représente rien !
 }
+
+void NoeudInstRepeter::traduitEnCPP(ostream & cout ,unsigned int indentation)const {
+    cout << setw(4 * indentation) << "do{";
+    m_sequence->traduitEnCPP(cout, indentation+1);
+    cout << "}while(!(";
+    m_condition->traduitEnCPP(cout, 0);
+    cout << "));" ;
+};
 
 ////////////////////////////////////////////////////////////////////////////////
 // NoeudInstPour
