@@ -155,6 +155,18 @@ int NoeudInstPour::executer() {
   return 0; // La valeur renvoyée ne représente rien !
 }
 
+void NoeudInstPour::traduitEnCPP(ostream & cout ,unsigned int indentation)const {
+    cout << setw(4 * indentation) << "for(";
+    if(m_affectation1 != nullptr) m_affectation1->traduitEnCPP(cout, 0);
+    m_condition->traduitEnCPP(cout, indentation);
+    if(m_affectation2 != nullptr) m_affectation2->traduitEnCPP(cout, 0);
+    cout << " {" << std::endl;
+    m_sequence->traduitEnCPP(cout, indentation+1);
+    cout << setw(4 * indentation) << "}";
+}
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // NoeudInstEcrire
 ////////////////////////////////////////////////////////////////////////////////
@@ -171,7 +183,7 @@ int NoeudInstEcrire::executer() {
             cout << p->executer();
         }
     }
-    cout << endl;
+    cout << std::endl;
   return 0; // La valeur renvoyée ne représente rien !
 }
 
@@ -179,14 +191,15 @@ int NoeudInstEcrire::executer() {
 void NoeudInstEcrire::traduitEnCPP(ostream & cout ,unsigned int indentation)const{
     cout << setw(4 * indentation) << "cout " ;
     for(Noeud* p : m_instructions){
+        cout << " << ";
+        string chaine = ((SymboleValue*) p)->getChaine();
         if (typeid(*p)==typeid(SymboleValue) &&  *((SymboleValue*)p)== "<CHAINE>" ){
-            string chaine = ((SymboleValue*) p)->getChaine();
-            // ...
-        }else{
-            // ...
+            cout << chaine;
+        }else {
+            cout << chaine.substr(1, chaine.size() - 2);
         }
-        // ...
     }
+    cout << ";";
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -210,5 +223,5 @@ void NoeudInstLire::traduitEnCPP(ostream & cout ,unsigned int indentation)const{
     for(Noeud* p : m_instructions){
         cout << " << " << ((SymboleValue*) p)->getChaine();
     }
-    cout << ";" << endl;
+    cout << ";";
 }
