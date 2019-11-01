@@ -76,7 +76,7 @@ class NoeudInstSi : public Noeud {
      // Construit une "instruction si" avec sa condition et sa séquence d'instruction
    ~NoeudInstSi() {}         // A cause du destructeur virtuel de la classe Noeud
     int executer() override; // Exécute l'instruction si : si condition vraie on exécute la séquence
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
   private:
     Noeud*  m_condition;
     Noeud*  m_sequence;

@@ -58,9 +58,9 @@ int NoeudOperateurBinaire::executer() {
   else if (this->m_operateur == ">") valeur = (og > od);
   else if (this->m_operateur == "<=") valeur = (og <= od);
   else if (this->m_operateur == ">=") valeur = (og >= od);
-  else if (this->m_operateur == "et") valeur = (og && od);
-  else if (this->m_operateur == "ou") valeur = (og || od);
-  else if (this->m_operateur == "non") valeur = (!og);
+  else if (this->m_operateur == "et") valeur = (og and od);
+  else if (this->m_operateur == "ou") valeur = (og or od);
+  else if (this->m_operateur == "non") valeur = (not og);
   else if (this->m_operateur == "/") {
     if (od == 0) throw DivParZeroException();
     valeur = og / od;
@@ -78,7 +78,15 @@ NoeudInstSi::NoeudInstSi(Noeud* condition, Noeud* sequence)
 
 int NoeudInstSi::executer() {
   if (m_condition->executer()) m_sequence->executer();
-  return m_condition->executer(); // La valeur renvoyée ne représente rien !
+  return m_condition->executer(); // La valeur renvoyée sert pour savoir si la séquence à été executée
+}
+
+void NoeudInstSi::traduitEnCPP(ostream & cout ,unsigned int indentation)const {
+    cout << setw(4 * indentation) << "if(";
+    m_condition->traduitEnCPP(cout, 0);
+    cout << "){" << std::endl;
+    m_sequence->traduitEnCPP(cout, indentation + 1);
+    cout << std::endl << setw(4 * indentation) << "}";
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -129,8 +137,7 @@ void NoeudInstSiRiche::traduitEnCPP(ostream & cout ,unsigned int indentation)con
 ////////////////////////////////////////////////////////////////////////////////
 
 NoeudInstTantQue::NoeudInstTantQue(Noeud* condition, Noeud* sequence)
-: m_condition(condition), m_sequence(sequence) {
-}
+: m_condition(condition), m_sequence(sequence) {}
 
 int NoeudInstTantQue::executer() {
   while (m_condition->executer()) m_sequence->executer();
