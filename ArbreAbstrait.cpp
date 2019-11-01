@@ -68,6 +68,18 @@ int NoeudOperateurBinaire::executer() {
   return valeur; // On retourne la valeur calculée
 }
 
+void NoeudOperateurBinaire::traduitEnCPP(ostream & cout ,unsigned int indentation)const {
+    m_operandeGauche->traduitEnCPP(cout, 0);
+
+    cout << " ";
+    if(m_operateur == "et") cout << "and";
+    else if(m_operateur == "ou") cout << "or";
+    else if(m_operateur == "non") cout << "not";
+    else cout << m_operateur.getChaine();
+
+    m_operandeDroit->traduitEnCPP(cout, 0);
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // NoeudInstSi
 ////////////////////////////////////////////////////////////////////////////////

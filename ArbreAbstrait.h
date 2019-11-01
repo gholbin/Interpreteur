@@ -60,7 +60,7 @@ class NoeudOperateurBinaire : public Noeud {
     // Construit une opération binaire : operandeGauche operateur OperandeDroit
    ~NoeudOperateurBinaire() {} // A cause du destructeur virtuel de la classe Noeud
     int executer() override;   // Exécute (évalue) l'opération binaire)
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
   private:
     Symbole m_operateur;
     Noeud*  m_operandeGauche;
