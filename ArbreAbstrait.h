@@ -91,7 +91,7 @@ class NoeudInstSiRiche : public Noeud {
     int executer() override; // Exécute l'instruction si : si condition vraie on exécute la séquence
     void ajoute(NoeudInstSi* sinonsi);
     void ajouteSinon(Noeud* sinon);
-    void traduitEnCPP(ostream & cout,unsigned int indentation)const override {};
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const override;
   private:
     vector<NoeudInstSi*>  m_si_sinonsi;
     Noeud*  m_sinon;

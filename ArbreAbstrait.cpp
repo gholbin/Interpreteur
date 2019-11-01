@@ -93,24 +93,37 @@ NoeudInstSiRiche::NoeudInstSiRiche(NoeudInstSi* si)
 int NoeudInstSiRiche::executer() {
     vector<NoeudInstSi*>::iterator it = m_si_sinonsi.begin();
     bool uneExecution = false;
-    while(it < m_si_sinonsi.end() && !uneExecution){
+    while(it != m_si_sinonsi.end() and not uneExecution){
         uneExecution = ((NoeudInstSi*) (*it))->executer();
         it++;
     }
-    if(!uneExecution){
+    if(!uneExecution && m_sinon != nullptr){
         m_sinon->executer();
     }
     return 0; // La valeur renvoyée ne représente rien !
 }
 
-void NoeudInstSiRiche::ajoute(NoeudInstSi* sinonsi){
-    m_si_sinonsi.push_back(sinonsi);
+void NoeudInstSiRiche::ajoute(NoeudInstSi* sinonSi){
+    m_si_sinonsi.push_back(sinonSi);
 }
 void NoeudInstSiRiche::ajouteSinon(Noeud* sinon){
     m_sinon = sinon;
 }
 
-
+void NoeudInstSiRiche::traduitEnCPP(ostream & cout ,unsigned int indentation)const {
+    vector<NoeudInstSi *>::const_iterator it;
+    for (it = m_si_sinonsi.begin(); it != m_si_sinonsi.end(); it++) {
+        if (it != m_si_sinonsi.begin()) {
+            cout << "else ";
+        }
+        (*it)->traduitEnCPP(cout, indentation);
+    }
+    if (m_sinon != nullptr) {
+        cout << "else{" << std::endl;
+        m_sinon->traduitEnCPP(cout, indentation + 1);
+        cout << std::endl << setw(4 * indentation) << "}";
+    }
+}
 ////////////////////////////////////////////////////////////////////////////////
 // NoeudInstTantQue
 ////////////////////////////////////////////////////////////////////////////////
