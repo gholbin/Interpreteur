@@ -1,0 +1,8 @@
+procedure principale()
+    i = 0
+    repeter 
+        ecrire(i)
+        i = i + 1
+    jusqua(i = 4)
+    ecrire(i)
+finproc

@@ -1,0 +1,7 @@
+procedure principale()
+    j = 12
+    pour(i = 0; i < 6 ; i = i + 1 ) 
+        j = j - 2 
+    finpour
+    ecrire(j)
+finproc
