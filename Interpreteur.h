@@ -7,6 +7,8 @@
 #include "TableSymboles.h"
 #include "ArbreAbstrait.h"
 
+
+
 class Interpreteur {
 public:
 	Interpreteur(ifstream & fichier);     // Construit un interpréteur pour interpreter
@@ -27,20 +29,33 @@ private:
     Noeud*         m_arbre;    // L'arbre abstrait
     bool             m_erreur;        // La detection d'erreur
     // Implémentation de la grammaire
-    Noeud*    programme();    //     <programme> ::= procedure principale() <seqInst> finproc FIN_FICHIER
-    Noeud*    seqInst();        //     <seqInst> ::= <inst> { <inst> }
-    Noeud*    inst();	    //        <inst> ::= <affectation> ; | <instSi>
+    Noeud*    programme();      // <programme> ::= procedure principale() <seqInst> finproc FIN_FICHIER
+    Noeud*    seqInst();        // <seqInst> ::= <inst> { <inst> }
+    Noeud*    inst();	        // <inst> ::= <affectation> ; | <instSi>
     Noeud*    affectation();    // <affectation> ::= <variable> = <expression>
-    Noeud*    expression();     //    <expression> ::= <facteur> { <opBinaire> <facteur> }
-    Noeud*    facteur();        //     <facteur> ::= <entier>    |    <variable>    |    - <facteur>    | non <facteur> | ( <expression> )
-                            //     <opBinaire> ::= + | - | *    | / | < | > | <= | >= | == | != | et | ou
-    Noeud*    instSi();         //        <instSi> ::= si ( <expression> ) <seqInst> finsi
+    Noeud*    expression();     // <expression> ::= <facteur> { <opBinaire> <facteur> }
+    Noeud*    facteur();        // <facteur> ::= <entier> | <variable> | - <facteur> | non <facteur> | ( <expression> )
+                                // <opBinaire> ::= + | - | *    | / | < | > | <= | >= | == | != | et | ou
     Noeud*    instSiRiche();    // <instSiRiche> ::=si(<expression>) <seqInst> {sinonsi(<expression>) <seqInst> }[sinon <seqInst>]finsi
     Noeud*    instTantQue();    // <instTantQue> ::=tantque( <expression> ) <seqInst> fintantque
     Noeud*    instRepeter();    // <instRepeter> ::=repeter <seqInst> jusqua( <expression> )
-    Noeud*    instPour();     // <instPour>    ::=pour( [ <affectation> ] ; <expression> ;[ <affectation> ]) <seqInst> finpour
+    Noeud*    instPour();       // <instPour>    ::=pour( [ <affectation> ] ; <expression> ;[ <affectation> ]) <seqInst> finpour
     Noeud*    instEcrire();     // <instEcrire>    ::=ecrire( <expression> | <chaine> {, <expression> | <chaine> })
-    Noeud*    instLire();     // <instLire>    ::=lire( <variable> {, <variable> })
+    Noeud*    instLire();       // <instLire>    ::=lire( <variable> {, <variable> })
+
+
+
+    //Decomposition de l'expression pour la priorité
+    //Noeud*    expression();   //<expression> ::= <expEt> {ou <expEt> }
+    Noeud*    expEt();          // <expEt> ::= <expComp> {et <expComp> }
+    Noeud*    expComp();        // <expComp> ::= <expAdd> {==|!=|<|<=|>|>= <expAdd> }
+    Noeud*    expAdd();         // <expAdd> ::= <expMult> {+|-<expMult> }
+    Noeud*    expMult();        // <expMult>::= <facteur> {*|/<facteur> }
+
+    static const std::vector<std::vector<const char const*>> exp;
+
+
+
 
 
 
