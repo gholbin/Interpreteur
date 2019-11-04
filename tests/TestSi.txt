@@ -3,28 +3,31 @@ procedure principale()
     j=0
     si(i>0) 
         j=1 
-    sinonsi(i=1) 
+    sinonsi(i==1) 
         j=2 
     sinon 
         j=3
     finsi
-    ecrire(i)
-    j=0
+    # j doit valoir 1
+    
+    k=0
     si(i<0) 
-        j=1 
-    sinonsi(i=1) 
-        j=2 
+        k=1 
+    sinonsi(i==1) 
+        k=2 
     sinon 
-        j=3
+        k=3
     finsi
-    ecrire(i)
-    j=0
+    # k doit valoir 2
+    
+    l=0
     si(i<0) 
-        j=1 
+        l=1 
     sinonsi(i<1) 
-        j=2 
+        l=2 
     sinon 
-        j=3
+        l=3
     finsi
-    ecrire(i)
+    # l doit valoir 3
 finproc
+    # j doit valoir 1 // k doit valoir 2 // l doit valoir 3
