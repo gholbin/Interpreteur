@@ -237,7 +237,7 @@ int NoeudInstEcrire::executer() {
 
 
 void NoeudInstEcrire::traduitEnCPP(ostream & cout ,unsigned int indentation)const{
-    cout << setw(4 * indentation) << "cout " ;
+    cout << setw(4 * indentation) << "std::cout " ;
     for(Noeud* p : m_instructions){
         cout << " << ";
         string chaine = ((SymboleValue*) p)->getChaine();
@@ -267,7 +267,7 @@ int NoeudInstLire::executer() {
 }
 
 void NoeudInstLire::traduitEnCPP(ostream & cout ,unsigned int indentation)const{
-    cout << setw(4 * indentation) << "cin ";
+    cout << setw(4 * indentation) << "std::cin ";
     for(Noeud* p : m_instructions){
         cout << " << " << ((SymboleValue*) p)->getChaine();
     }

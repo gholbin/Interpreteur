@@ -1,33 +1,58 @@
 procedure principale()
-    i=1
-    j=0
+    i=1;
+    j=0;
     si(i>0) 
-        j=1 
+        j=1;
     sinonsi(i==1) 
-        j=2 
+        j=2;
     sinon 
-        j=3
+        j=3;
     finsi
     # j doit valoir 1
     
-    k=0
+    k=0;
     si(i<0) 
-        k=1 
+        k=1;
     sinonsi(i==1) 
-        k=2 
+        k=2;
     sinon 
-        k=3
+        k=3;
     finsi
     # k doit valoir 2
     
-    l=0
+    l=0;
     si(i<0) 
-        l=1 
+        l=1;
     sinonsi(i<1) 
-        l=2 
+        l=2;
     sinon 
-        l=3
+        l=3;
     finsi
     # l doit valoir 3
+
+    m=0;
+    si(i==1)
+        m=1;
+    finsi
+    # m doit valoir 1
+
+    n=0;
+    si(i<1)
+        n=1;
+    sinonsi(i>0)
+        n=2;
+    finsi
+    # n doit valoir 2
+
+    o=0;
+    si(i<1)
+        o=1;
+    sinon
+        o=3;
+    finsi
+    # o doit valoir 3
+
 finproc
+    # i doit valoir 1
     # j doit valoir 1 // k doit valoir 2 // l doit valoir 3
+    # m doit valoir 1 // n doit valoir 2 // o doit valoir 3
