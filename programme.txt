@@ -1,24 +1,24 @@
 # Fichier de test
 # Les lignes de commentaires commencent par #
 procedure principale()
-  i = 12+3;
-  si (i>14)
+    i = 12+3;
+    si (i>14)
     j=1;
-  finsi
-  ecrire("i = ", i)
-  ecrire("saisissez i : ")
-  lire(i)
-  ecrire("saisissez j : ")
-  lire(j)
-  ecrire("i = ", i)
-  ecrire("j = ", j)
-  si(i<5)
+    finsi
+    ecrire("i = ", i)
+    ecrire("saisissez i : ")
+    lire(i)
+    ecrire("saisissez j : ")
+    lire(j)
+    ecrire("i = ", i)
+    ecrire("j = ", j)
+    si(i<5)
     ecrire("i < 5")
-  sinonsi(i < 20)
+    sinonsi(i < 20)
     ecrire("i < 20")
-  sinon
+    sinon
     ecrire("i >= 20")
-  finsi
+    finsi
 finproc
 # Commentaire Final
 

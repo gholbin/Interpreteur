@@ -1,8 +1,8 @@
 procedure principale()
-  i = 0;
-  tantque (i<20)
+    i = 0;
+    tantque (i<20)
     i = i+1;
-  fintantque
+    fintantque
 finproc
 
 #TantQue SUCCESS

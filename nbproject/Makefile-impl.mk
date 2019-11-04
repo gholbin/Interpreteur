@@ -107,7 +107,7 @@ ALLCONFS=Debug Release
 	@echo "    ${ALLCONFS}"
 	@echo ""
 	@echo "and the following targets:"
-	@echo "    build  (default target)"
+	@echo "    build    (default target)"
 	@echo "    clean"
 	@echo "    clobber"
 	@echo "    all"

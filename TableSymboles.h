@@ -23,7 +23,7 @@ public:
         return *m_table[i];
     } // accès au ième SymboleValue de la table
     friend ostream & operator<<(ostream & cout, const TableSymboles & ts); // affiche ts sur cout
-
+    void traduitEnCPP(ostream & cout,unsigned int indentation)const;
 private:
     vector<SymboleValue*> m_table; // La table des symboles valués, triée sur la chaine
     // (on aurait dû plus judicieusement utiliser map au lieu de vector)

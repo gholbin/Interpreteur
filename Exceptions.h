@@ -1,5 +1,5 @@
 /* 
- * File:   Exceptions.h
+ * File:     Exceptions.h
  * Author: martin
  *
  * Created on 7 décembre 2014, 19:08

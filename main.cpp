@@ -29,8 +29,8 @@ int main(int argc, char* argv[]) {
             const string cppFileName = nomFich.substr(0, nomFich.size() - 4);
             ofstream cout;
             cout.open(cppFileName + ".cpp", ios::out);
-            interpreteur.getArbre()->traduitEnCPP(cout, 0);
-
+            interpreteur.traduitEnCPP(cout, 0);
+            cout.close();
             std::cout << std::endl << "================ Compilation du fichier" << std::endl;
             string command = "g++ ";
             command += cppFileName.c_str();
@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
 
             // Et on vérifie qu'il a fonctionné en regardant comment il a modifié la table des symboles
             std::cout << std::endl << "================ Table des symboles apres exécution : "
-                      << interpreteur.getTable();
+                        << interpreteur.getTable();
         }
     } catch (InterpreteurException & e) {
         std::cout << e.what() << std::endl;

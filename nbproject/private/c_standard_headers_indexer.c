@@ -14,9 +14,9 @@
  * http://www.netbeans.org/cddl-gplv2.html
  * or nbbuild/licenses/CDDL-GPL-2-CP. See the License for the
  * specific language governing permissions and limitations under the
- * License.  When distributing the software, include this License Header
+ * License.    When distributing the software, include this License Header
  * Notice in each file and include the License file at
- * nbbuild/licenses/CDDL-GPL-2-CP.  Oracle designates this
+ * nbbuild/licenses/CDDL-GPL-2-CP.    Oracle designates this
  * particular file as subject to the "Classpath" exception as provided
  * by Oracle in the GPL Version 2 section of the License file that
  * accompanied this code. If applicable, add the following below the
@@ -55,21 +55,21 @@
 #include <string.h> 	 // String handling
 #include <stdlib.h> 	 // General utilities: memory management, program utilities, string conversions, random numbers
 #include <time.h> 	 // Time/date utilities
-#include <iso646.h>      // (since C95) Alternative operator spellings
-#include <wchar.h>       // (since C95) Extended multibyte and wide character utilities
-#include <wctype.h>      // (since C95) Wide character classification and mapping utilities
+#include <iso646.h>        // (since C95) Alternative operator spellings
+#include <wchar.h>         // (since C95) Extended multibyte and wide character utilities
+#include <wctype.h>        // (since C95) Wide character classification and mapping utilities
 #ifdef _STDC_C99
 #include <complex.h>     // (since C99) Complex number arithmetic
 #include <fenv.h>        // (since C99) Floating-point environment
 #include <inttypes.h>    // (since C99) Format conversion of integer types
 #include <stdbool.h>     // (since C99) Boolean type
-#include <stdint.h>      // (since C99) Fixed-width integer types
-#include <tgmath.h>      // (since C99) Type-generic math (macros wrapping math.h and complex.h)
+#include <stdint.h>        // (since C99) Fixed-width integer types
+#include <tgmath.h>        // (since C99) Type-generic math (macros wrapping math.h and complex.h)
 #endif
 #ifdef _STDC_C11
 #include <stdalign.h>    // (since C11) alignas and alignof convenience macros
-#include <stdatomic.h>   // (since C11) Atomic types
+#include <stdatomic.h>     // (since C11) Atomic types
 #include <stdnoreturn.h> // (since C11) noreturn convenience macros
 #include <threads.h>     // (since C11) Thread library
-#include <uchar.h>       // (since C11) UTF-16 and UTF-32 character utilities
+#include <uchar.h>         // (since C11) UTF-16 and UTF-32 character utilities
 #endif

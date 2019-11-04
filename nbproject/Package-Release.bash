@@ -34,8 +34,8 @@ function makeDirectory
     checkReturnCode
     if [ "$2" != "" ]
     then
-      chmod $2 "$1"
-      checkReturnCode
+        chmod $2 "$1"
+        checkReturnCode
     fi
 }
 function copyFileToTmpDir
