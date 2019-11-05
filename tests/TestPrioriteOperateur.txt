@@ -1,0 +1,13 @@
+#10000008961
+#ordre : '3 * 5' puis '5 + 15' puis '20 + 7'
+#ordre : '0 < 4' puis '1 et 1' puis '0 ou 1'
+procedure principale()
+    i = 0;
+    i = 5 + 3 * 5 + 7;
+    ecrire("attendu : 27, obtenu : ", i)
+    i =  0 ou 1 et 0 < 4;
+    ecrire("attendu : 1, obtenu : ", i)
+    i = - -2;
+    ecrire("attendu : 2, obtenu : ", i)
+
+finproc
