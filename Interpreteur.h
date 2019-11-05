@@ -6,6 +6,7 @@
 #include "Exceptions.h"
 #include "TableSymboles.h"
 #include "ArbreAbstrait.h"
+#include <algorithm>    // std::find
 
 
 
@@ -33,7 +34,6 @@ private:
     Noeud*    seqInst();        // <seqInst> ::= <inst> { <inst> }
     Noeud*    inst();	        // <inst> ::= <affectation> ; | <instSi>
     Noeud*    affectation();    // <affectation> ::= <variable> = <expression>
-    Noeud*    expression();     // <expression> ::= <facteur> { <opBinaire> <facteur> }
     Noeud*    facteur();        // <facteur> ::= <entier> | <variable> | - <facteur> | non <facteur> | ( <expression> )
                                 // <opBinaire> ::= + | - | *    | / | < | > | <= | >= | == | != | et | ou
     Noeud*    instSiRiche();    // <instSiRiche> ::=si(<expression>) <seqInst> {sinonsi(<expression>) <seqInst> }[sinon <seqInst>]finsi
@@ -43,16 +43,21 @@ private:
     Noeud*    instEcrire();     // <instEcrire>    ::=ecrire( <expression> | <chaine> {, <expression> | <chaine> })
     Noeud*    instLire();       // <instLire>    ::=lire( <variable> {, <variable> })
 
+    bool 	  isInThisDepth(unsigned int depth);
+    Noeud*    expression(unsigned int depth = 0);
+    //<expression> ::= <expEt> {ou <expEt> }
+    // <expEt> ::= <expComp> {et <expComp> }
+    // <expComp> ::= <expAdd> {==|!=|<|<=|>|>= <expAdd> }
+    // <expAdd> ::= <expMult> {+|-<expMult> }
+    // <expMult>::= <facteur> {*|/<facteur> }
 
-
-    //Decomposition de l'expression pour la priorité
-    //Noeud*    expression();   //<expression> ::= <expEt> {ou <expEt> }
-    Noeud*    expEt();          // <expEt> ::= <expComp> {et <expComp> }
-    Noeud*    expComp();        // <expComp> ::= <expAdd> {==|!=|<|<=|>|>= <expAdd> }
-    Noeud*    expAdd();         // <expAdd> ::= <expMult> {+|-<expMult> }
-    Noeud*    expMult();        // <expMult>::= <facteur> {*|/<facteur> }
-
-    static const std::vector<std::vector<const char const*>> exp;
+    /*Noeud*	  expression();
+	Noeud*	  expEt();
+	Noeud*    expComp();
+	Noeud*	  expAdd();
+	Noeud*	  expMult();
+	*/
+	static const std::vector<std::vector<const char*>> exp;
 
 
 

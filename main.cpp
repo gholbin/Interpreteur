@@ -15,13 +15,13 @@ int main(int argc, char* argv[]) {
         if (fichier.fail()) throw FichierException();
         Interpreteur interpreteur(fichier);
         interpreteur.analyse();
-        // Si pas d'exception levée, l'analyse syntaxique a réussi
-        std::cout << std::endl << "================ Syntaxe Correcte" << std::endl;
-        // On affiche le contenu de la table des symboles avant d'exécuter le programme
-        std::cout << std::endl << "================ Table des symboles avant exécution : " << interpreteur.getTable();
-
-        // On exécute le programme si l'arbre n'est pas vide
         if (interpreteur.getArbre() != nullptr) {
+            std::cout << std::endl << "================ Syntaxe Correcte" << std::endl;
+
+            // On affiche le contenu de la table des symboles avant d'exécuter le programme
+            std::cout << std::endl << "================ Table des symboles avant exécution : " << interpreteur.getTable();
+
+            // On exécute le programme si l'arbre n'est pas vide
             std::cout << std::endl << "================ Execution de l'arbre" << std::endl;
             interpreteur.getArbre()->executer();
 

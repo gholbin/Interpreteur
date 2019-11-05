@@ -147,37 +147,91 @@ Noeud* Interpreteur::affectation() {
     return fact; // On renvoie fact qui pointe sur la racine de l'expression
 }*/
 
-const std::vector<std::vector<const char const*>> Interpreteur::exp = {{"ou", "\0"},
-                                                                       {"et", "\0"},
-                                                                       {"==", "!=", "<", "<=", ">", ">=", "\0"},
-                                                                       {"+", "-", "\0"},
-                                                                       {"*", "/", "\0"}};
+const std::vector<std::vector<const char*>> Interpreteur::exp = {{"ou"},
+                                                                 {"et"},
+                                                                 {"==", "!=", "<", "<=", ">", ">="},
+                                                                 {"+", "-"},
+                                                                 {"*", "/"},
+                                                                 {"<ENTIER>", "<VARIABLE>", "-", "non"}};
 
+bool Interpreteur::isInThisDepth(unsigned int depth){
+    if(depth >= exp.size()) return true; //Necessaire pour quand on arrive au niveau du facteur
+    std::vector<const char*>::const_iterator it = exp[depth].begin();
+    while(it < exp[depth].end() and not (m_lecteur.getSymbole() == (string) *it)) it++;
+    return it < exp[depth].end();
+}
+
+Noeud* Interpreteur::expression(unsigned int depth){
+    //<expression> ::= <expEt> {ou <expEt> }
+    // <expEt> ::= <expComp> {et <expComp> }
+    // <expComp> ::= <expAdd> {==|!=|<|<=|>|>= <expAdd> }
+    // <expAdd> ::= <expMult> {+|-<expMult> }
+    // <expMult>::= <facteur> {*|/<facteur> }
+    Noeud *fact;
+    if(depth < exp.size() - 1) fact = expression(depth + 1);
+    else fact = facteur();
+    while (isInThisDepth(depth)) {
+        Symbole operateur = m_lecteur.getSymbole();
+        m_lecteur.avancer();
+        Noeud *factDroit;
+        if(depth < exp.size() - 1) factDroit = expression(depth + 1);
+        else factDroit = facteur();
+        fact = new NoeudOperateurBinaire(operateur, fact, factDroit);
+    }
+    return fact;
+}
+/*
 Noeud* Interpreteur::expression(){
-    // <expression> ::= <expEt> { ou <expEt> }
-    Noeud* fact = expEt();
-    while(m_lecteur.getSymbole() == "et"){
+    Noeud *fact = expEt();
+    while (isInThisDepth(0)) {
         Symbole operateur = m_lecteur.getSymbole();
         m_lecteur.avancer();
-        Noeud* factDroit = expEt();
+        Noeud *factDroit = expEt();
         fact = new NoeudOperateurBinaire(operateur, fact, factDroit);
     }
     return fact;
 }
-Noeud* Interpreteur::expEt() {
-    // <expEt> ::= <expComp> { et <expComp> }
-    Noeud* fact = expComp();
-    while(m_lecteur.getSymbole() == "et"){
+Noeud* Interpreteur::expEt(){
+    Noeud *fact = expComp();
+    while (isInThisDepth(1)) {
         Symbole operateur = m_lecteur.getSymbole();
         m_lecteur.avancer();
-        Noeud* factDroit = expEt();
+        Noeud *factDroit = expComp();
         fact = new NoeudOperateurBinaire(operateur, fact, factDroit);
     }
-
-
-
     return fact;
 }
+Noeud* Interpreteur::expComp(){
+    Noeud *fact = expAdd();
+    while (isInThisDepth(2)) {
+        Symbole operateur = m_lecteur.getSymbole();
+        m_lecteur.avancer();
+        Noeud *factDroit = expAdd();
+        fact = new NoeudOperateurBinaire(operateur, fact, factDroit);
+    }
+    return fact;
+}
+Noeud* Interpreteur::expAdd(){
+    Noeud *fact = expMult();
+    while (isInThisDepth(3)) {
+        Symbole operateur = m_lecteur.getSymbole();
+        m_lecteur.avancer();
+        Noeud *factDroit = expMult();
+        fact = new NoeudOperateurBinaire(operateur, fact, factDroit);
+    }
+    return fact;
+}
+Noeud* Interpreteur::expMult(){
+    Noeud *fact = facteur();
+    while (isInThisDepth(4)) {
+        Symbole operateur = m_lecteur.getSymbole();
+        m_lecteur.avancer();
+        Noeud *factDroit = facteur();
+        fact = new NoeudOperateurBinaire(operateur, fact, factDroit);
+    }
+    return fact;
+}
+*/
 
 
 
