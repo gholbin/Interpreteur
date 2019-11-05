@@ -24,14 +24,14 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=M3105-TP5
+PROJECTNAME=Interpreteur
 
 # Active Configuration
 DEFAULTCONF=Debug
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=Debug Release 
+ALLCONFS=Debug Release TestSi TestTantQue TestTantQue_FAILED 
 
 
 # build
@@ -107,7 +107,7 @@ ALLCONFS=Debug Release
 	@echo "    ${ALLCONFS}"
 	@echo ""
 	@echo "and the following targets:"
-	@echo "    build    (default target)"
+	@echo "    build  (default target)"
 	@echo "    clean"
 	@echo "    clobber"
 	@echo "    all"
