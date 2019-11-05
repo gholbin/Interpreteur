@@ -1,6 +1,9 @@
 .idea
 .dep.inc
 cmake-build-debug/
+build/
+dist/
+
 
 tests/TestSi.cpp
 tests/TestSi
@@ -14,3 +17,5 @@ tests/TestSi
 
 tests/TestPour.cpp
 tests/TestPour
+
+
