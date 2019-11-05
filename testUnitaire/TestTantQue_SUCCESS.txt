@@ -1,0 +1,8 @@
+procedure principale()
+    i = 1;
+    tantque (i<20)
+    i = i+1;
+    fintantque
+finproc
+
+#TantQue SUCCESS

@@ -1,0 +1,9 @@
+procedure principale()
+    i = 0;
+    tantque (i<20
+    #oubli de ')'
+    i = i+1;
+    fintantque
+finproc
+
+#TantQue FAILED
