@@ -1,6 +1,6 @@
 # Test du pour 
 # Résultat attendu : 
-# i = 5 
+# i = 6 
 # j = 0 
 procedure principale()
     j = 12;

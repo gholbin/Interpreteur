@@ -1,8 +1,9 @@
+# Test du repeter
+# Résultat attendu : 
+# i = 4
 procedure principale()
     i = 0;
-    repeter 
-        ecrire(i)
+    repeter
         i = i + 1;
     jusqua(i == 4)
-    ecrire(i)
 finproc
