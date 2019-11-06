@@ -152,6 +152,7 @@ const std::vector<std::vector<const char*>> Interpreteur::exp = {{"ou"},
                                                                  {"==", "!=", "<", "<=", ">", ">="},
                                                                  {"+", "-"},
                                                                  {"*", "/"},
+                                                                 {"^"},
                                                                  {"<ENTIER>", "<VARIABLE>", "-", "non"}};
 
 bool Interpreteur::isInThisDepth(unsigned int depth){
@@ -368,6 +369,7 @@ Noeud*    Interpreteur::instLire(){
 }
 void Interpreteur::traduitEnCPP(ostream & cout,unsigned int indentation)const{
     cout << "#include <iostream>" << std::endl << std::endl;
+    cout << "#include <math.h>" << std::endl << std::endl;
     cout << setw(4*indentation)<< "" <<"int main() {"<< endl; // Début d’un programme C++
     // Ecrire en C++ la déclaration des variables présentes dans le programme...
     // ... variables dont on retrouvera le nom en parcourant la table des symboles !
