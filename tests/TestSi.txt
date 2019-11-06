@@ -1,3 +1,8 @@
+# Test du si riche
+# Résultat attendu : 
+# i doit valoir 1
+# j doit valoir 1 // k doit valoir 2 // l doit valoir 3
+# m doit valoir 1 // n doit valoir 2 // o doit valoir 3
 procedure principale()
     i=1;
     j=0;
@@ -8,7 +13,6 @@ procedure principale()
     sinon 
         j=3;
     finsi
-    # j doit valoir 1
     
     k=0;
     si(i<0) 
@@ -18,8 +22,7 @@ procedure principale()
     sinon 
         k=3;
     finsi
-    # k doit valoir 2
-    
+
     l=0;
     si(i<0) 
         l=1;
@@ -28,13 +31,11 @@ procedure principale()
     sinon 
         l=3;
     finsi
-    # l doit valoir 3
 
     m=0;
     si(i==1)
         m=1;
     finsi
-    # m doit valoir 1
 
     n=0;
     si(i<1)
@@ -42,7 +43,6 @@ procedure principale()
     sinonsi(i>0)
         n=2;
     finsi
-    # n doit valoir 2
 
     o=0;
     si(i<1)
@@ -50,9 +50,5 @@ procedure principale()
     sinon
         o=3;
     finsi
-    # o doit valoir 3
 
 finproc
-    # i doit valoir 1
-    # j doit valoir 1 // k doit valoir 2 // l doit valoir 3
-    # m doit valoir 1 // n doit valoir 2 // o doit valoir 3
