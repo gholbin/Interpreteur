@@ -1,10 +1,9 @@
-# Test de l'interpréteur
-# 
+# Test de lire
+# i et j seront demandés
 # Résultat attendu :
 # les valeurs entrées sont dans i et j
 procedure principale()
-    i = 12
-    ecrire("Ecrire marche")
-    ecrire("Et i vaut actuellement : ", i)
-
+    i = 0;
+    j = 0;
+    Lire(i, j)
 finproc
