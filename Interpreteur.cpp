@@ -180,6 +180,12 @@ Noeud* Interpreteur::expression(unsigned int depth){
     }
     return fact;
 }
+
+
+
+
+//////// Voici la version basique, non factoriséw ////////////
+
 /*
 Noeud* Interpreteur::expression(){
     Noeud *fact = expEt();

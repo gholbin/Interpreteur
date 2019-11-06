@@ -51,6 +51,7 @@ private:
     // <expAdd> ::= <expMult> {+|-<expMult> }
     // <expMult>::= <facteur> {*|/<facteur> }
 
+//////// Declaration de la 1ere version de la priorité des opérateurs, factorisé dans la fonction ci dessus ////////
     /*Noeud*	  expression();
 	Noeud*	  expEt();
 	Noeud*    expComp();
