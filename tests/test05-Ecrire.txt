@@ -1,0 +1,10 @@
+# Test de l'interpréteur
+# Résultat attendu :
+# Ecrire marche
+# Et i vaut actuellement : 12
+procedure principale()
+    i = 12
+    ecrire("Ecrire marche")
+    ecrire("Et i vaut actuellement : ", i)
+
+finproc
