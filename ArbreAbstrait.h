@@ -7,6 +7,7 @@
 #include <vector>
 #include <iostream>
 #include <iomanip>
+#include <math.h>       // pow
 using namespace std;
 
 #include "Symbole.h"

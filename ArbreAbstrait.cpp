@@ -75,6 +75,7 @@ int NoeudOperateurBinaire::executer() {
     else if (this->m_operateur == "et") valeur = (og and od);
     else if (this->m_operateur == "ou") valeur = (og or od);
     else if (this->m_operateur == "non") valeur = (not og);
+    else if (this->m_operateur == "^") valeur = pow(og,od);
     else if (this->m_operateur == "/") {
     if (od == 0) throw DivParZeroException();
     valeur = og / od;
@@ -83,15 +84,24 @@ int NoeudOperateurBinaire::executer() {
 }
 
 void NoeudOperateurBinaire::traduitEnCPP(ostream & cout ,unsigned int indentation)const {
-    m_operandeGauche->traduitEnCPP(cout, 0);
+    if(m_operateur == "^"){
+        cout << " std::pow(";
+        m_operandeGauche->traduitEnCPP(cout, 0);
+        cout << ", ";
+        m_operandeDroit->traduitEnCPP(cout, 0);
+        cout << ")";
+    }else {
+        m_operandeGauche->traduitEnCPP(cout, 0);
 
-    cout << " ";
-    if(m_operateur == "et") cout << "and";
-    else if(m_operateur == "ou") cout << "or";
-    else if(m_operateur == "non") cout << "not";
-    else cout << m_operateur.getChaine();
-    cout << " ";
-    m_operandeDroit->traduitEnCPP(cout, 0);
+        cout << " ";
+        if (m_operateur == "et") cout << "and";
+        else if (m_operateur == "ou") cout << "or";
+        else if (m_operateur == "non") cout << "not";
+
+        else cout << m_operateur.getChaine();
+        cout << " ";
+        m_operandeDroit->traduitEnCPP(cout, 0);
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
