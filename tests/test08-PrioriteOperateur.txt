@@ -1,0 +1,15 @@
+# Test de la priorité des opérateurs
+# Résultat attendu : 
+# i = 27 
+# j = 1
+# k = 348
+#ordre : '3 * 5' puis '5 + 15' puis '20 + 7'
+#ordre : '0 < 4' puis '1 et 1' puis '0 ou 1'
+#ordre : '7³' puis '5 + 343'
+procedure principale()
+    i = 0;
+    i = 5 + 3 * 5 + 7;
+    j =  0 ou 1 et 0 < 4;
+    k = 5 + 7³;
+
+finproc
