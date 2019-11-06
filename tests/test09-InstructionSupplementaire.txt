@@ -1,0 +1,9 @@
+# Test de l'instruction supplementaire
+# Il s'agit de l'instruction puissance : ^
+# Résultat attendu :
+# i = 32
+# j = 343
+procedure principale()
+    i = 2 ^ 5;
+    j = 7 ^ 3;
+finproc
