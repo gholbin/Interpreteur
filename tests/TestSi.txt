@@ -1,8 +1,8 @@
 # Test du si riche
 # Résultat attendu : 
-# i doit valoir 1
-# j doit valoir 1 // k doit valoir 2 // l doit valoir 3
-# m doit valoir 1 // n doit valoir 2 // o doit valoir 3
+# i = 1 ||
+# j = 1 || k = 2 || l = 3
+# m = 1 || n = 2 || o = 3
 procedure principale()
     i=1;
     j=0;

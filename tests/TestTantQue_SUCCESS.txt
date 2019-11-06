@@ -1,3 +1,6 @@
+# Test du tant que
+# Résultat attendu : 
+# i = 20
 procedure principale()
     i = 0;
     tantque (i<20)
