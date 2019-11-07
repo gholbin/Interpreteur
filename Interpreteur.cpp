@@ -185,7 +185,7 @@ Noeud* Interpreteur::expression(unsigned int depth){
 
 
 
-//////// Voici la version basique, non factoriséw ////////////
+//////// Voici la version basique, non factorisée ////////////
 
 /*
 Noeud* Interpreteur::expression(){

@@ -28,8 +28,8 @@ procedure principale()
         l=1;
     sinonsi(i<1) 
         l=2;
-    sinon 
-        l=3;
+    #sinon
+        #l=3;
     finsi
 
     m=0;

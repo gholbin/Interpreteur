@@ -7,6 +7,6 @@ procedure principale()
     i = i+1;
     fintantque
 
-finproc
+
 
 #TantQue FAILED

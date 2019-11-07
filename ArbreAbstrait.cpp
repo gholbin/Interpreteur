@@ -43,7 +43,6 @@ int NoeudAffectation::executer() {
 }
 
 void NoeudAffectation::traduitEnCPP(ostream & cout ,unsigned int indentation)const {
-    //if (indentation != 0){}
     cout << setw(4 * indentation) << "";
     m_variable->traduitEnCPP(cout, 0);
     cout << " = ";
@@ -167,8 +166,8 @@ void NoeudInstSiRiche::traduitEnCPP(ostream & cout ,unsigned int indentation)con
     if (m_sinon != nullptr) {
         cout << "else{" << std::endl;
         m_sinon->traduitEnCPP(cout, indentation + 1);
+        cout << setw(4 * indentation) << "" << "}";
     }
-    cout << setw(4 * indentation) << "" << "}";
 }
 ////////////////////////////////////////////////////////////////////////////////
 // NoeudInstTantQue
